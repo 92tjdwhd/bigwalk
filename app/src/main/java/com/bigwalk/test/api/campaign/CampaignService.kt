@@ -8,5 +8,5 @@ import retrofit2.http.Query
 
 interface CampaignService {
     @GET("api/campaigns/category/0/story?")
-    suspend fun getCampaignList(@Query("page") page: Int, @Query("size") size: Int): Array<CampaignApiResult>
+    suspend fun getCampaignList(@Query("page") page: Int, @Query("size") size: Int): ArrayList<CampaignApiResult>
 }

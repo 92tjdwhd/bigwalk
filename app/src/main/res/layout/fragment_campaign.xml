@@ -57,7 +57,7 @@
                 android:minHeight="?attr/actionBarSize"
                 app:tabIndicatorColor="#2B72DC"
                 app:tabIndicatorHeight="2dp"
-                app:tabMode="auto"
+                app:tabMode="fixed"
                 app:tabPaddingEnd="0dp"
                 app:tabPaddingStart="0dp"
                 app:tabSelectedTextColor="#222222"
@@ -66,11 +66,12 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2Category"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tab_layout"
-            android:background="#222222"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appBarLayout"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

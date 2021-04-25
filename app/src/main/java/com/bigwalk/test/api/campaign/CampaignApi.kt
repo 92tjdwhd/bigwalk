@@ -46,7 +46,7 @@ object CampaignApi {
     /**
      * url 파서 정보
      */
-    suspend fun gatCampaignList(page: Int, size: Int): Array<CampaignApiResult> {
+    suspend fun gatCampaignList(page: Int, size: Int): ArrayList<CampaignApiResult> {
         return retrofitCampaign.getCampaignList(page, size)
     }
 }
