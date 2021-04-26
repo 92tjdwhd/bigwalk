@@ -4,4 +4,10 @@
     <string name="campaign">캠패인</string>
     <string name="post">포스트</string>
     <string name="all">전체</string>
+    <string name="end">종료</string>
+    <string name="proceeding">진행중</string>
+    <string name="campaign_open">공개형</string>
+    <string name="campaign_group">그룹형</string>
+
+    <string name="my_campaign_list">내가 참여한 캠페인</string>
 </resources>

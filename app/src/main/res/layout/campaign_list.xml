@@ -15,13 +15,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/ivEndCampaign"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_result_post_stroke"/>
+
+    <ImageView
+        android:id="@+id/ivResultPost"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/img_result_post"
+        android:background="@drawable/bg_result_post_stroke"/>
+
     <TextView
         android:id="@+id/tvCampaignTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="세상에서 제일 쉬운 나눔"
-        android:textColor="#222222"
+        android:textColor="@color/campaignBaseColor"
         android:textSize="15dp"
         app:layout_constraintEnd_toStartOf="@+id/ivAttendIcon"
         app:layout_constraintHorizontal_bias="0"
@@ -33,8 +54,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="네패스 기업문화팀"
         android:textSize="13dp"
+        android:textColor="@color/campaignCompanyColor"
         app:layout_constraintEnd_toStartOf="@+id/ivAttendIcon"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/ivCampaignThumbnail"
@@ -46,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/bg_campaign_badge"
+        android:background="@drawable/bg_campaign_open_badge"
         android:paddingHorizontal="4dp"
         android:paddingVertical="2dp"
         android:text="공개형"
@@ -81,14 +102,15 @@
         android:id="@+id/pbCampaign"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_marginStart="10dp"
         android:max="100"
         android:progress="100"
         app:layout_constraintBottom_toBottomOf="@+id/ivCampaignThumbnail"
         app:layout_constraintEnd_toStartOf="@+id/ivAttendIcon"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/ivCampaignThumbnail" />
+        app:layout_constraintStart_toEndOf="@+id/ivCampaignThumbnail"
+        android:progressDrawable="@drawable/bg_campaign_progress"/>
 
     <ImageView
         android:id="@+id/ivAttendIcon"
@@ -97,7 +119,8 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_donate"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

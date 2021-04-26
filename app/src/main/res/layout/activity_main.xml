@@ -17,7 +17,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#ffffff">
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -37,13 +38,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabContentStart="20dp"
-                app:tabIndicatorColor="#2B72DC"
+                app:tabIndicatorColor="@color/tabTintSelectedColor"
                 app:tabIndicatorHeight="2dp"
                 app:tabMode="auto"
                 app:tabPaddingEnd="0dp"
                 app:tabPaddingStart="0dp"
-                app:tabSelectedTextColor="#222222"
-                app:tabTextColor="#777777"
+                app:tabSelectedTextColor="@color/campaignBaseColor"
+                app:tabTextColor="@color/tabUnSelectedColor"
                 />
 
             <androidx.viewpager2.widget.ViewPager2

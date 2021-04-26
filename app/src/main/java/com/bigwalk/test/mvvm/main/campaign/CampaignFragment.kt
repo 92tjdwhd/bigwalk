@@ -53,5 +53,9 @@ class CampaignFragment : Fragment() {
             }
         }
         ).attach()
+
+        viewModel.requestCampaign()
     }
+
+
 }

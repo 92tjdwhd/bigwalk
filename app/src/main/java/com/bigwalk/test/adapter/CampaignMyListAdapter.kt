@@ -11,23 +11,23 @@ import com.bigwalk.test.api.campaign.CampaignApiResult
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.campaign_list.view.*
+import kotlinx.android.synthetic.main.campaign_my_list.view.*
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
-    RecyclerView.Adapter<CampaignListAdapter.CampaignListAdapterViewHolder>() {
+class CampaignMyListAdapter(val data: ArrayList<CampaignApiResult>) :
+    RecyclerView.Adapter<CampaignMyListAdapter.CampaignMyListAdapterViewHolder>() {
 
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CampaignListAdapterViewHolder {
+    ): CampaignMyListAdapterViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.campaign_list, parent, false)
-        return CampaignListAdapterViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.campaign_my_list, parent, false)
+        return CampaignMyListAdapterViewHolder(view)
     }
 
 
@@ -36,7 +36,7 @@ class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
         data.addAll(list)
         notifyDataSetChanged()
     }
-    override fun onBindViewHolder(holder: CampaignListAdapterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CampaignMyListAdapterViewHolder, position: Int) {
         holder.bind(data[position])
     }
 
@@ -44,17 +44,14 @@ class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
         return data.size
     }
 
-    inner class CampaignListAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class CampaignMyListAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val ivCampaignThumbnail = view.ivCampaignThumbnail
         val ivEndCampaign = view.ivEndCampaign
         val tvCampaignTitle = view.tvCampaignTitle
-        val tvCompany = view.tvCompany
-        val tvBadge = view.tvBadge
         val tvPercent = view.tvPercent
-        val tvStory = view.tvStory
         val pbCampaign = view.pbCampaign
-        val ivAttendIcon = view.ivAttendIcon
+
         val ivResultPost = view.ivResultPost
 
         val radius = view.context.resources.getDimension(R.dimen.campaign_category_thumbnail)
@@ -67,32 +64,17 @@ class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(campaign: CampaignApiResult) {
             tvCampaignTitle.text = campaign.name
-            tvCompany.text = campaign.campaignPromoter?.name
             tvPercent.text = "${campaign.ratio}%"
             pbCampaign.progress = campaign.ratio
 
             val story = campaign.my?.story?:false
             val endDT = formatter.parse(campaign.endDate)
             if(nowDT.before(endDT)){
-                tvStory.text = itemView.context.getText(R.string.proceeding)
                 ivEndCampaign.visibility = View.GONE
-                tvCampaignTitle.setTextColor(itemView.context.getColor(R.color.campaignBaseColor))
-                tvCompany.setTextColor(itemView.context.getColor(R.color.campaignCompanyColor))
-            }else{
-                tvStory.text = itemView.context.getText(R.string.end)
-                ivEndCampaign.visibility = View.VISIBLE
-                tvCampaignTitle.setTextColor(itemView.context.getColor(R.color.campaignDisableColor))
-                tvCompany.setTextColor(itemView.context.getColor(R.color.campaignDisableColor))
-            }
 
-            if(campaign.organizations?.size?:0 < 1){
-                tvBadge.text = itemView.context.getText(R.string.campaign_open)
-                tvBadge.background = itemView.context.getDrawable(R.drawable.bg_campaign_open_badge)
             }else{
-                tvBadge.text = itemView.context.getText(R.string.campaign_group)
-                tvBadge.background = itemView.context.getDrawable(R.drawable.bg_campaign_group_badge)
+                ivEndCampaign.visibility = View.VISIBLE
             }
-            tvBadge.text = if(campaign.organizations?.size?:0 < 1) "공개형" else "그룹형"
 
             if(story){
                 ivResultPost.visibility = View.VISIBLE

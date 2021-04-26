@@ -3,4 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="campaignBaseColor">#222222</color>
+    <color name="campaignCompanyColor">#979292</color>
+    <color name="campaignDisableColor">#d0d0d0</color>
+    <color name="tabSelectedColor">#222222</color>
+    <color name="tabUnSelectedColor">#666666</color>
+    <color name="tabTintSelectedColor">#4379e7</color>
+    <color name="campaignProgressBarColor">#4379e7</color>
 </resources>

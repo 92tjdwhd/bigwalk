@@ -32,18 +32,27 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_scrollFlags="scroll|enterAlways">
 
+                <TextView
+                    android:id="@+id/tvMyCampaign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_campaign_list"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="10dp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rlMyCampaign"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="@+id/clActionBarContentBottomView"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvMyCampaign"
+                    setMyCampaignItems="@{vm.myCampaignData}"/>
 
                 <View
                     android:id="@+id/clActionBarContentBottomView"
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
-                    android:background="#dddddd"
+                    android:background="#F3F3F3"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -54,14 +63,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/toolbar"
+                android:paddingHorizontal="10dp"
                 android:minHeight="?attr/actionBarSize"
                 app:tabIndicatorColor="#2B72DC"
-                app:tabIndicatorHeight="2dp"
+                app:tabIndicator="@drawable/custom_tablayout_style"
+                app:tabIndicatorGravity="center"
                 app:tabMode="fixed"
                 app:tabPaddingEnd="0dp"
                 app:tabPaddingStart="0dp"
-                app:tabSelectedTextColor="#222222"
-                app:tabTextColor="#777777" />
+                app:tabSelectedTextColor="#ffffff"
+                app:tabTextColor="@color/tabUnSelectedColor" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
