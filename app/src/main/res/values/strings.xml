@@ -4,4 +4,5 @@
     <string name="campaign">캠패인</string>
     <string name="post">포스트</string>
     <string name="all">전체</string>
+    <string name="campaign_sort_dialog_title">캠페인리스트 아래 순으로 정렬하기</string>
 </resources>

@@ -11,10 +11,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.campaign_list.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
+class CampaignListAdapter(var data: ArrayList<CampaignApiResult>) :
     RecyclerView.Adapter<CampaignListAdapter.CampaignListAdapterViewHolder>() {
 
+    private val tempData: ArrayList<CampaignApiResult> by lazy {
+        data
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,11 +31,30 @@ class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
     }
 
 
-
     fun updateData(list: ArrayList<CampaignApiResult>) {
-        data.addAll(list)
+        //data.addAll(list)
+        // notifyDataSetChanged()
+    }
+
+    fun filterList(isOpen: Boolean) {
+        data = if (isOpen) {
+            tempData.filter { it.organizations?.size ?: 0 == 1 } as ArrayList<CampaignApiResult>
+        } else {
+            tempData.filter { it.organizations?.size ?: 0 >= 1 } as ArrayList<CampaignApiResult>
+        }
         notifyDataSetChanged()
     }
+
+    fun participantSort(isHigh: Boolean) {
+        if (isHigh) {
+            data = tempData.sortedByDescending { it.participantCount }.toCollection(ArrayList())
+        } else {
+            data = tempData.sortedBy { it.participantCount }.toCollection(ArrayList())
+        }
+        notifyDataSetChanged()
+    }
+
+
     override fun onBindViewHolder(holder: CampaignListAdapterViewHolder, position: Int) {
         holder.bind(data[position])
     }
@@ -56,17 +80,19 @@ class CampaignListAdapter(val data: ArrayList<CampaignApiResult>) :
         fun bind(campaign: CampaignApiResult) {
             tvCampaignTitle.text = campaign.name
             tvCompany.text = campaign.campaignPromoter?.name
-            tvBadge.text = if(campaign.organizations?.isEmpty() != false) "공개형" else "그룹형"
+            tvBadge.text = if (campaign.organizations?.isEmpty() != false) "공개형" else "그룹형"
             tvPercent.text = "${campaign.ratio}%"
             pbCampaign.progress = campaign.ratio
-            val story = campaign.my?.story?:false
-            if(story){
+            val story = campaign.my?.story ?: false
+            if (story) {
                 tvStory.text = "기부완료"
-            }else{
+            } else {
                 tvStory.text = "종료"
             }
 
-            requestManager.load(campaign.smallListThumbnailImagePath).apply(RequestOptions.bitmapTransform(RoundedCorners(radius.toInt()))).into(ivCampaignThumbnail)
+            requestManager.load(campaign.smallListThumbnailImagePath)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(radius.toInt())))
+                .into(ivCampaignThumbnail)
 
         }
 
