@@ -51,7 +51,7 @@ class CampaignMyListAdapter(val data: ArrayList<CampaignApiResult>) :
         val tvCampaignTitle = view.tvCampaignTitle
         val tvPercent = view.tvPercent
         val pbCampaign = view.pbCampaign
-
+        val ivAttendIcon = view.ivAttendIcon
         val ivResultPost = view.ivResultPost
 
         val radius = view.context.resources.getDimension(R.dimen.campaign_category_thumbnail)
@@ -77,8 +77,10 @@ class CampaignMyListAdapter(val data: ArrayList<CampaignApiResult>) :
             }
 
             if(story){
+                ivAttendIcon.visibility = View.VISIBLE
                 ivResultPost.visibility = View.VISIBLE
             }else{
+                ivAttendIcon.visibility = View.INVISIBLE
                 ivResultPost.visibility = View.GONE
             }
 

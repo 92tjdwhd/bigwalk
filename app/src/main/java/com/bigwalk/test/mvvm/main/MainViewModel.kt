@@ -20,6 +20,7 @@ class MainViewModel(val campaignEventBus: CampaignEventBus) : ViewModel() {
                 1 -> campaignEventBus.produceEvent(CampaignSortEvent.GroupCampaignEvent)
                 2 -> campaignEventBus.produceEvent(CampaignSortEvent.HighestParticipation)
                 3 -> campaignEventBus.produceEvent(CampaignSortEvent.LowestParticipation)
+                4 -> campaignEventBus.produceEvent(CampaignSortEvent.NewestEvent)
             }
         }
         onSettingEvent.value = Event(dialogOnClickListener)

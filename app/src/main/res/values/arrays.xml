@@ -4,7 +4,8 @@
     <string-array name="campaignSortOption">
         <item>오픈형만 보기</item>
         <item>그룹형만 보기</item>
-        <item>참여율 높은 순</item>
-        <item>참여율 낮은 순</item>
+        <item>달성률 높은 순</item>
+        <item>달성률 낮은 순</item>
+        <item>최신순</item>
     </string-array>
 </resources>

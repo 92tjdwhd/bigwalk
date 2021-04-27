@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "872098624269",
+    "project_id": "bigwalk-d9e7d",
+    "storage_bucket": "bigwalk-d9e7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872098624269:android:5ff619b33c6d2328567644",
+        "android_client_info": {
+          "package_name": "com.bigwalk.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872098624269-4qanq0j0gonbb8o78s04aksercmq3mo4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bigwalk.test",
+            "certificate_hash": "8bbc65f8111b6fd2e41645aacd4ce3c788c7c975"
+          }
+        },
+        {
+          "client_id": "872098624269-s0mhm8rgp9k76q79vr992sotjdmou51h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBctVrtj8qiLtyB6OspfIgsC7LR3mDhNKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872098624269-s0mhm8rgp9k76q79vr992sotjdmou51h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

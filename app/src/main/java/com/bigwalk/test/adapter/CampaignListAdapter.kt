@@ -1,6 +1,7 @@
 package com.bigwalk.test.adapter
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.campaign_list.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -32,13 +34,13 @@ class CampaignListAdapter(var data: ArrayList<CampaignApiResult>) :
 
 
     fun updateData(list: ArrayList<CampaignApiResult>) {
-        //data.addAll(list)
-        // notifyDataSetChanged()
+        data.addAll(list)
+        notifyDataSetChanged()
     }
 
     fun filterList(isOpen: Boolean) {
         data = if (isOpen) {
-            tempData.filter { it.organizations?.size ?: 0 == 1 } as ArrayList<CampaignApiResult>
+            tempData.filter { it.organizations?.size ?: 0 == 0 } as ArrayList<CampaignApiResult>
         } else {
             tempData.filter { it.organizations?.size ?: 0 >= 1 } as ArrayList<CampaignApiResult>
         }
@@ -51,6 +53,11 @@ class CampaignListAdapter(var data: ArrayList<CampaignApiResult>) :
         } else {
             data = tempData.sortedBy { it.participantCount }.toCollection(ArrayList())
         }
+        notifyDataSetChanged()
+    }
+
+    fun newestSort() {
+        data = tempData.sortedByDescending { it.formattedStartDate }.toCollection(ArrayList())
         notifyDataSetChanged()
     }
 
@@ -90,36 +97,41 @@ class CampaignListAdapter(var data: ArrayList<CampaignApiResult>) :
             tvPercent.text = "${campaign.ratio}%"
             pbCampaign.progress = campaign.ratio
 
-            val story = campaign.my?.story?:false
+            val story = campaign.my?.story ?: false
             val endDT = formatter.parse(campaign.endDate)
-            if(nowDT.before(endDT)){
+            if (nowDT.before(endDT)) {
                 tvStory.text = itemView.context.getText(R.string.proceeding)
                 ivEndCampaign.visibility = View.GONE
                 tvCampaignTitle.setTextColor(itemView.context.getColor(R.color.campaignBaseColor))
                 tvCompany.setTextColor(itemView.context.getColor(R.color.campaignCompanyColor))
-            }else{
+            } else {
                 tvStory.text = itemView.context.getText(R.string.end)
                 ivEndCampaign.visibility = View.VISIBLE
                 tvCampaignTitle.setTextColor(itemView.context.getColor(R.color.campaignDisableColor))
                 tvCompany.setTextColor(itemView.context.getColor(R.color.campaignDisableColor))
             }
 
-            if(campaign.organizations?.size?:0 < 1){
+            if (campaign.organizations?.size ?: 0 < 1) {
                 tvBadge.text = itemView.context.getText(R.string.campaign_open)
                 tvBadge.background = itemView.context.getDrawable(R.drawable.bg_campaign_open_badge)
-            }else{
+            } else {
                 tvBadge.text = itemView.context.getText(R.string.campaign_group)
-                tvBadge.background = itemView.context.getDrawable(R.drawable.bg_campaign_group_badge)
+                tvBadge.background =
+                    itemView.context.getDrawable(R.drawable.bg_campaign_group_badge)
             }
-            tvBadge.text = if(campaign.organizations?.size?:0 < 1) "공개형" else "그룹형"
+            tvBadge.text = if (campaign.organizations?.size ?: 0 < 1) "공개형" else "그룹형"
 
-            if(story){
+            if (story) {
+                ivAttendIcon.visibility = View.VISIBLE
                 ivResultPost.visibility = View.VISIBLE
-            }else{
+            } else {
+                ivAttendIcon.visibility = View.INVISIBLE
                 ivResultPost.visibility = View.GONE
             }
 
-            requestManager.load(campaign.smallListThumbnailImagePath).apply(RequestOptions.bitmapTransform(RoundedCorners(radius.toInt()))).into(ivCampaignThumbnail)
+            requestManager.load(campaign.smallListThumbnailImagePath)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(radius.toInt())))
+                .into(ivCampaignThumbnail)
 
         }
 

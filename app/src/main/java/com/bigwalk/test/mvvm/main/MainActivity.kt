@@ -1,5 +1,8 @@
 package com.bigwalk.test.mvvm.main
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +23,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        @JvmStatic
+        fun startActivity(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+
+            context.startActivity(intent)
+        }
+    }
 
     private val viewModel: MainViewModel by viewModel()
 

@@ -62,7 +62,7 @@ class CategoryFragment : Fragment() {
                 val lastPosition = layout.findLastCompletelyVisibleItemPosition()
                 val lastItem: Int = recyclerView.adapter?.itemCount as Int
 
-                if (lastPosition + 1 == lastItem) {
+                if (lastPosition + 1 == lastItem && lastItem >=19) {
                     viewModel.requestCampaign()
                 }
             }
@@ -90,6 +90,7 @@ class CategoryFragment : Fragment() {
                         CampaignSortEvent.GroupCampaignEvent -> adapter.filterList(false)
                         CampaignSortEvent.HighestParticipation -> adapter.participantSort(true)
                         CampaignSortEvent.LowestParticipation -> adapter.participantSort(false)
+                        CampaignSortEvent.NewestEvent -> adapter.newestSort()
                     }
                 }
             })

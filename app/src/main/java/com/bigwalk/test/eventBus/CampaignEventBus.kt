@@ -19,5 +19,5 @@ class CampaignEventBus {
     }
 
 }
-enum class CampaignSortEvent { OpenCampaignEvent, GroupCampaignEvent, HighestParticipation, LowestParticipation}
+enum class CampaignSortEvent { OpenCampaignEvent, GroupCampaignEvent, HighestParticipation, LowestParticipation,NewestEvent}
 

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">BigWalkCloneText</string>
-    
     <string name="campaign">캠패인</string>
     <string name="post">포스트</string>
     <string name="all">전체</string>
@@ -8,6 +7,6 @@
     <string name="proceeding">진행중</string>
     <string name="campaign_open">공개형</string>
     <string name="campaign_group">그룹형</string>
-
+    <string name="campaign_sort_dialog_title">캠페인리스트 아래 순으로 정렬하기</string>
     <string name="my_campaign_list">내가 참여한 캠페인</string>
 </resources>

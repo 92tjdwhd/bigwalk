@@ -44,6 +44,11 @@ class CategoryFragmentViewModel(val campaignEventBus: CampaignEventBus) : ViewMo
                 campaignSortEvent.value = Event(CampaignSortEvent.LowestParticipation)
             }
         }
+        viewModelScope.launch {
+            campaignEventBus.subscribeEvent(CampaignSortEvent.NewestEvent) {
+                campaignSortEvent.value = Event(CampaignSortEvent.NewestEvent)
+            }
+        }
 
     }
 
