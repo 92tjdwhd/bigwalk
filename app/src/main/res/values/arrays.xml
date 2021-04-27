@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="campaignSortOption">
+        <item>오픈형만 보기</item>
+        <item>그룹형만 보기</item>
+        <item>참여율 높은 순</item>
+        <item>참여율 낮은 순</item>
+    </string-array>
+</resources>

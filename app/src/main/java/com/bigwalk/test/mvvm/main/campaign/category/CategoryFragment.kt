@@ -1,6 +1,7 @@
 package com.bigwalk.test.mvvm.main.campaign.category
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.bigwalk.test.R
 import com.bigwalk.test.adapter.CampaignListAdapter
 import com.bigwalk.test.databinding.FragmentCampaignBinding
 import com.bigwalk.test.databinding.FragmentCategoryBinding
+import com.bigwalk.test.eventBus.CampaignSortEvent
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,11 +49,11 @@ class CategoryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initView()
         initEvent()
+
     }
 
     fun initView() {
         viewModel.requestCampaign()
-
         rlCampaign.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -69,11 +71,25 @@ class CategoryFragment : Fragment() {
 
     fun initEvent() {
         with(viewModel) {
+            initEventBusSubscribe()
+
             updateListEvent.observe(requireActivity(), Observer {
                 it.getContentIfNotHandled().let {
                     val adapter = rlCampaign.adapter as CampaignListAdapter
                     if (it != null) {
                         adapter.updateData(it)
+                    }
+                }
+            })
+
+            campaignSortEvent.observe(requireActivity(), Observer {
+                it.getContentIfNotHandled().let {
+                    val adapter = rlCampaign.adapter as CampaignListAdapter
+                    when(it){
+                        CampaignSortEvent.OpenCampaignEvent -> adapter.filterList(true)
+                        CampaignSortEvent.GroupCampaignEvent -> adapter.filterList(false)
+                        CampaignSortEvent.HighestParticipation -> adapter.participantSort(true)
+                        CampaignSortEvent.LowestParticipation -> adapter.participantSort(false)
                     }
                 }
             })

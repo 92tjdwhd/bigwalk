@@ -30,6 +30,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tlActionbar"
                 app:layout_constraintStart_toStartOf="parent"/>
 
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tlActionbar"
                 android:layout_width="match_parent"
@@ -46,6 +47,17 @@
                 app:tabSelectedTextColor="@color/campaignBaseColor"
                 app:tabTextColor="@color/tabUnSelectedColor"
                 />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_setting"
+                android:background="#00000000"
+                android:adjustViewBounds="true"
+                app:layout_constraintTop_toTopOf="@+id/tlActionbar"
+                app:layout_constraintBottom_toBottomOf="@+id/tlActionbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{()-> vm.onSettingEventListener()}"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp2Main"

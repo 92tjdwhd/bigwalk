@@ -1,5 +1,6 @@
 package com.bigwalk.test.koin
 
+import com.bigwalk.test.eventBus.CampaignEventBus
 import com.bigwalk.test.mvvm.main.MainViewModel
 import com.bigwalk.test.mvvm.main.campaign.CampaignFragmentViewModel
 import com.bigwalk.test.mvvm.main.campaign.category.CategoryFragmentViewModel
@@ -8,9 +9,11 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    viewModel { MainViewModel() }
+    single { CampaignEventBus() }
+
+    viewModel { MainViewModel(get()) }
 
     viewModel { CampaignFragmentViewModel() }
 
-    viewModel { CategoryFragmentViewModel() }
+    viewModel { CategoryFragmentViewModel(get()) }
 }
