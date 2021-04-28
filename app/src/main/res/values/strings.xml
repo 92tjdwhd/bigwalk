@@ -9,4 +9,6 @@
     <string name="campaign_group">그룹형</string>
     <string name="campaign_sort_dialog_title">캠페인리스트 아래 순으로 정렬하기</string>
     <string name="my_campaign_list">내가 참여한 캠페인</string>
+    <string name="google_login">Sign in with Google</string>
+    <string name="pass">건너뛰기</string>
 </resources>
