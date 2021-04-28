@@ -23,7 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class LoginActivity : AppCompatActivity() {
 
     companion object {
-        private const val TAG = "LoginActivity"
         private const val RC_SIGN_IN = 9001
     }
 
@@ -82,13 +81,26 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-                MainActivity.startActivity(this@LoginActivity)
-                finish()
-
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 Toast.makeText(applicationContext,"Google sign in failed",Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    MainActivity.startActivity(this@LoginActivity)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(applicationContext,"Google sign in failed",Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     override fun onDestroy() {

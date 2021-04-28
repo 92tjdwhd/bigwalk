@@ -7,7 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bigwalk.test.mvvm.main.campaign.category.CategoryFragment
 import com.bigwalk.test.mvvm.main.campaign.category.EmptyFragment
 
-class MainCampaignCategoryViewPage2Adapter(fragmentManager:FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class MainCampaignCategoryViewPage2Adapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
         return 5
     }
@@ -15,7 +16,7 @@ class MainCampaignCategoryViewPage2Adapter(fragmentManager:FragmentManager, life
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> CategoryFragment.newInstance()
-            else ->  EmptyFragment.newInstance()
+            else -> EmptyFragment.newInstance()
         }
 
     }

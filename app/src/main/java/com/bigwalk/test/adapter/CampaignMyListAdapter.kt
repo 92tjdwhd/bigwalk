@@ -31,11 +31,11 @@ class CampaignMyListAdapter(val data: ArrayList<CampaignApiResult>) :
     }
 
 
-
     fun updateData(list: ArrayList<CampaignApiResult>) {
         data.addAll(list)
         notifyDataSetChanged()
     }
+
     override fun onBindViewHolder(holder: CampaignMyListAdapterViewHolder, position: Int) {
         holder.bind(data[position])
     }
@@ -67,24 +67,26 @@ class CampaignMyListAdapter(val data: ArrayList<CampaignApiResult>) :
             tvPercent.text = "${campaign.ratio}%"
             pbCampaign.progress = campaign.ratio
 
-            val story = campaign.my?.story?:false
+            val story = campaign.my?.story ?: false
             val endDT = formatter.parse(campaign.endDate)
-            if(nowDT.before(endDT)){
+            if (nowDT.before(endDT)) {
                 ivEndCampaign.visibility = View.GONE
 
-            }else{
+            } else {
                 ivEndCampaign.visibility = View.VISIBLE
             }
 
-            if(story){
+            if (story) {
                 ivAttendIcon.visibility = View.VISIBLE
                 ivResultPost.visibility = View.VISIBLE
-            }else{
+            } else {
                 ivAttendIcon.visibility = View.INVISIBLE
                 ivResultPost.visibility = View.GONE
             }
 
-            requestManager.load(campaign.smallListThumbnailImagePath).apply(RequestOptions.bitmapTransform(RoundedCorners(radius.toInt()))).into(ivCampaignThumbnail)
+            requestManager.load(campaign.smallListThumbnailImagePath)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(radius.toInt())))
+                .into(ivCampaignThumbnail)
 
         }
 
